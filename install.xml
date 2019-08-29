@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dleplugin>
+	<name>Платный переход в группу для DLE Billing</name>
+	<description>Плагин позволяет пользователям оплачивать переход между группами.</description>
+	<icon>engine/modules/billing/plugins/paygroups/icon/icon.png</icon>
+	<version>1.3.2</version>
+	<dleversion>13.0</dleversion>
+	<versioncompare>greater</versioncompare>
+	<upgradeurl></upgradeurl>
+	<filedelete>0</filedelete>
+	<needplugin></needplugin>
+	<mysqlinstall><![CDATA[]]></mysqlinstall>
+	<mysqlupgrade><![CDATA[]]></mysqlupgrade>
+	<mysqlenable><![CDATA[]]></mysqlenable>
+	<mysqldisable><![CDATA[]]></mysqldisable>
+	<mysqldelete><![CDATA[]]></mysqldelete>
+	<phpinstall><![CDATA[]]></phpinstall>
+	<phpupgrade><![CDATA[]]></phpupgrade>
+	<phpenable><![CDATA[]]></phpenable>
+	<phpdisable><![CDATA[]]></phpdisable>
+	<phpdelete><![CDATA[function deleteDirPayGroup($dir) {
+	if(is_dir($dir)){
+		$dir = rtrim($dir, "/") . "/";
+		$files = array_diff(scandir($dir), array('..', '.'));
+		foreach( $files as $file ){
+			deleteDirPayGroup($dir . $file);      
+		}
+		@rmdir($dir);
+		return true;
+	} elseif(is_file($dir)) {
+		@unlink($dir);
+		return true;
+	}
+	return false;
+}
+deleteDirPayGroup(ROOT_DIR . "/engine/modules/billing/plugins/paygroups/");
+deleteDirPayGroup(ROOT_DIR . "/engine/data/billing/plugin.paygroups.php");
+deleteDirPayGroup(ROOT_DIR . "/engine/data/billing/plugin.paygroups_list.php");]]></phpdelete>
+</dleplugin>

@@ -15,8 +15,8 @@ $_Config = include MODULE_DATA . '/plugin.paygroups.php';
 $_ConfigGroups = include MODULE_DATA . '/plugin.paygroups_list.php';
 $_ConfigBilling = include MODULE_DATA . '/config.php';
 
-require_once MODULE_PATH . "/plugins/paygroups/lang.php";
-require_once MODULE_PATH . '/OutAPI.php';
+require_once DLEPlugins::Check( MODULE_PATH . "/plugins/paygroups/lang.php" );
+require_once DLEPlugins::Check( MODULE_PATH . '/OutAPI.php' );
 
 $group_id = intval( $_GET['group_id'] );
 $group_settings = $_ConfigGroups['group_' . $group_id];

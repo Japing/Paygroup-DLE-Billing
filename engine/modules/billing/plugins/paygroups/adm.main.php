@@ -15,7 +15,7 @@ Class ADMIN
 	{
 		global $user_group;
 
-		require_once MODULE_PATH . "/plugins/paygroups/lang.php";
+		require_once DLEPlugins::Check( MODULE_PATH . "/plugins/paygroups/lang.php" );
 
 		# Сохранить настройки плагина
 		#
